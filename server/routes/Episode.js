@@ -1,0 +1,11 @@
+const express = require('express');
+const router = express.Router();
+const {protect}= require('../auth/Protect.js');
+const { Insert, GetAll, Update, Delete, GetById, GetByserie } = require('../controllers/Episode.js');
+router.post('/',protect,  Insert);
+router.get('/',GetAll);
+router.get('/:id', GetById);
+router.get('/byseries/:id',GetByserie);
+router.put('/:id', protect,Update);
+router.delete('/:id', protect,Delete);
+module.exports=router;

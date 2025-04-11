@@ -1,0 +1,10 @@
+const express = require('express');
+const router = express.Router();
+const {protect}= require('../auth/Protect.js');
+const { Insert, GetAll, Update, Delete, GetOne } = require('../controllers/Films.js');
+router.post('/', protect, Insert);
+router.get('/',GetAll);
+router.get('/:id',protect,GetOne);
+router.put('/:id',protect,Update);
+router.delete('/:id',protect,Delete);
+module.exports=router;
