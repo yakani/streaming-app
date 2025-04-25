@@ -2,6 +2,7 @@ const generatetoken = require('../auth/Tokengenerate.js');
 const User = require('../models/User.js');
 const asynchandeler = require('express-async-handler');
 const {SendCOnfirmation, SendWelcome} = require('./email.js');
+const cloudinary = require('../midleware/cloud.js');
  const handler = (res,msg,status)=>{
     res.status(status)
     throw new Error(msg);
@@ -51,27 +52,31 @@ generatetoken(res,user._id);
    if(!req.user){
       handler(res,"invalid data", 404);
   }
-  res.status(200).json({name:req.user.name,
-   email:req.user.email
-  });
+  res.status(200).json(req.user);
  });
  const Updateuser = asynchandeler(
    async (req,res)=>{
-      const {name , email } = req.body;
+      const {name , image } = req.body;
       const user = await User.findById(req.user._id);
       if(!user){
          handler(res,"user not found", 404);
      }
      let rand = [];
-     if(req.body.list  !=null  &&  !user.List.includes(req.body.List)){
+     if(req.body.list  &&  !user.List.includes(req.body.List)){
             rand.push(req.body.List);
      }
    rand = rand.concat(user.List); 
+   if(image){
+      const pic = await cloudinary.uploader.upload(image, {
+         folder: 'uploads',
+      });
+      user.avatar  = pic.secure_url;
+   }
      user.name = name == null ? user.name : name;
      user.List = rand;
      await user.save();
    console.log(rand);
-     res.status(200).json({msg:"update"})
+     res.status(200).json(user);
    }
  )
  const Delete = asynchandeler( async(req,res)=>{
@@ -118,7 +123,16 @@ const Authenticate = asynchandeler(async(req,res)=>{
       handler(res,"not authorized",404);
    }
    res.status(200).json({message:"ok"});
-})
+});
+const logout  = asynchandeler(async(req,res)=>{
+   if(!req.user){
+      handler(res,"not authorized",404);
+   }
+   res.cookie('jwt','',{
+     maxAge:0,
+   });
+   res.status(200).json({message:"ok"});
+});
  module.exports= {
     Insert,
     Get,
@@ -128,5 +142,6 @@ const Authenticate = asynchandeler(async(req,res)=>{
     AdminLogin,
     Sendcode,
     InsertAdmin,
-    Authenticate
+    Authenticate,
+    logout
  }

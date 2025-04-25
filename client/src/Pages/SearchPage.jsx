@@ -1,10 +1,18 @@
 import { useLoaderData, useNavigate } from "react-router";
 import SwipeComponent from "../Component/SwipeComponent"
 import { useEffect, useState } from "react";
+import { useproduct } from "../Store/Productstore";
+import { Loader } from "lucide-react";
 
-
-const SearchPage = ({check}) => {
-    const  goal = useLoaderData() ;
+const SearchPage = () => {
+  const { films , series , isloading} = useproduct();
+  if(isloading){
+    return(
+      <div className="flex items-center justify-center h-screen">
+       <Loader className='size-10 animate-spin'/>
+      </div>);
+  }
+    const  goal = films.concat(series) ;
     const [show , setshow] = useState(true);
     const [goalsort , setgoalsort] = useState(goal);
     const navigate = useNavigate();
@@ -12,15 +20,11 @@ const SearchPage = ({check}) => {
         setgoalsort(goal.filter((g)=> g.Tittle.includes(stament)));
     }
    
-    useEffect(()=>{
-    if(!check){
-      navigate('/signin');
-  }
-    },[])
+
   return (
     <div className="flex flex-col bg-robin-900 min-h[800px] w-full">
       <div className="flex justify-between m-2">
-        <img src="/rewind.png" alt="" className="h-[30px] w-[30px] cursor-pointer  shadow-xl shadow-robin-950 m-4" onClick={()=>navigate('/view')} />
+       
         <img src="/download.png" alt="" className="h-[30px] w-[30px]  shadow-xl shadow-robin-950 cursor-pointer " onClick={()=>navigate('/download')}/>
       </div>
       <div className="flex w-full justify-center m-auto p-4  ">
@@ -50,26 +54,5 @@ const SearchPage = ({check}) => {
     </div>
   )
 }
- const SearchLoader = async ()=>{
-  let all=[];
-  try {
-  
-    const res =  await fetch(`${import.meta.env.VITE_Api}film`);
-    const res2 = await  fetch(`${import.meta.env.VITE_Api}series`);
-    if(!res.ok || !res2.ok){
-      throw new Error('error to load')
-    }
-    const film = await res.json();
-    const serie = await res2.json();
-    all = film.concat(serie);
-    return all;
 
-  
-  } catch (error) {
-    console.log(error);
-    
-  }
-
-
- }
-export {SearchPage as default, SearchLoader }   
+export {SearchPage as default, }   

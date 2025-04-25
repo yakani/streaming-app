@@ -1,7 +1,18 @@
-
-
-
+import { useNavigate } from "react-router";
+import { useproduct } from "../Store/Productstore";
+import { Obserstore } from "../Store/Observation";
 const NextPlay = ({goals}) => {
+  const { getselected} = useproduct();
+  const { Go } = Obserstore();
+  const navigate = useNavigate();
+  const handleClick = (goal) => {
+    getselected(goal);
+    const url = goal.season == null ? `/play/film/${goal._id}`: `${goal.serie_id == null ? "/series":"/play/episode" }/${goal._id}`;
+    if(!url.includes("/series")){
+      Go(true);
+    }
+    navigate(url);
+  }
    if(!goals || goals.length === 0) return null; // Return null if no goals are available  
   return (
    goals.map(
@@ -11,7 +22,7 @@ const NextPlay = ({goals}) => {
             <img src={next.data.thumbail} alt="" className="h-[50px] w-[50px] rounded-xl m-2" />
             <p className="text-white-50 font-sans text-xl m-2  text-end">{next.data.Tittle}</p></div>
        
-           <a href={`${import.meta.env.VITE_Api3}${next.film ? `play/film/${next.data._id}`:`${next.serie_id == null ? "series":"play/episode" }/${next.data._id}` }`}> <img src="/play.png" alt="" className="h-[30px] w-[30px]  cursor-pointer"/></a>
+         <img src="/play.png" alt="" className="h-[30px] w-[30px]  cursor-pointer" onClick={()=>handleClick(next.data)}/>
         </div>
     
    )

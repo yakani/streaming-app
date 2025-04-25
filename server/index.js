@@ -1,6 +1,6 @@
 const express = require('express');
 require('dotenv/config');
-const app = express();
+const { app , server} = require('./midleware/socke.js');
 const conn = require('./dbconfig.js');
 const { errorhandeler,notfound} = require('./midleware/error');
 const user = require('./routes/User');
@@ -9,12 +9,13 @@ const episode = require('./routes/Episode');
 const history = require('./routes/History');
 const series = require('./routes/Series');
 const auth = require('./routes/Google.js');
+const Comment  = require('./routes/Comment.js');
 const passport = require('passport');
 const cors = require('cors');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-app.use(express.urlencoded({ extended:false , limit:'10mb'}));
-app.use(express.json({limit:'10mb'}));
+app.use(express.urlencoded({ extended:false }));
+app.use(express.json());
 app.use(cookieParser());
 app.use(session({
     secret:process.env.secret,
@@ -38,9 +39,10 @@ app.use('/episode',episode);
 app.use('/history',history);
 app.use('/series',series);
 app.use('/auth',auth);
+app.use('/comment',Comment);
 
 conn();
 
 app.use(notfound);
 app.use(errorhandeler);
-app.listen(7000, ()=>console.log('running'));
+server.listen(7000, ()=>console.log('running'));

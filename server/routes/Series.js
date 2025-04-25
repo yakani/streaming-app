@@ -1,8 +1,9 @@
 const express = require('express');
 const {protect}= require('../auth/Protect.js');
+const upload = require('../midleware/multer.js');
 const { addSeries, getOneserie, getSeries, deleteSeries, updateSerie, getOneserieByname } = require('../controllers/Series');
 const router = express.Router();
-router.post('/',protect, addSeries);
+router.post('/',protect,upload, addSeries);
 router.get('/:id',getOneserie);
 router.get('/', getSeries);
 router.get('/name/:id', getOneserieByname);

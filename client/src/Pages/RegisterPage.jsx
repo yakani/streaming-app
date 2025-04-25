@@ -3,71 +3,67 @@ import { Link, useNavigate } from "react-router"
 import { useState } from "react"
 import Spinner from "../Component/Spinner"
 import { toast } from "react-toastify";
+import { useAuthstore } from "../Store/Authstore";
+import { Mail, Phone, User } from "lucide-react";
 const RegisterPage = () => {
-      const [loading,setLoading]= useState(false);
+  const {register , islogining} = useAuthstore();
+      
       const [Email,setEmail] = useState('');
       const [Tel,setTel] = useState('');
       const [name,setName] = useState('');
       const navigate = useNavigate();
       const submit = (formdata)=>{
-        setLoading(true);
+      
        const email = formdata.get('email');
        const tel = formdata.get('tel');
        const name = formdata.get('name');
        if( email == "" || tel ==null || name == ""){
         toast.error("invalid data");
-        setLoading(false);
+        
         return;
        }
        if(!email.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/) || email == "" || tel ==null || name == ""){
         toast.error("invalid email");
-        setLoading(false);
         return;
        }
 
-        try {
-          fetch(`${import.meta.env.VITE_Api}user `,{
-            headers:{
-              'Content-Type':'application/json'
-            },
-            body:JSON.stringify({email,tel,name})
-          }).then(resp =>{
-            setLoading(false);
-            toast.success('good');
-            navigate("/view");
-          })
-          
-        } catch (error) {
-          toast.error(error);
-        }
+        register({email,tel,name});
+        navigate('/');
 
        }
   return (
-    <div className=" bg-robin-900 h-full m-0 w-full  flex" >
+    <div className=" bg-robin-900  min-h-screen grid lg:grid-cols-2" >
   
-    <div className="flex-col  mt-0 justify-center flex p-3"> 
-      <p className="text-2xl text-white-50 text-semibold mb-4 text-6xl  antialiased">Login into Yak</p>
+    <div className="flex flex-col justify-center items-center p-6 sm:p-12"> 
+      <p className="text-2xl text-white-50 text-semibold mb-4 text-6xl  antialiased">Signup into Yak</p>
       <form action={submit}>
-      <div className="m-2"><label
+      <div className="m-2 flex"><label
         htmlFor="name"
-        className="text-3xl font-sans text-white-50"
-        >Name :</label>
+        className="flex"
+        >
+          <User className=" w-[25px] h-[25px] text-bittersweet-400 "/>
+          <span className="m-1 text-white-50 text-xl">Name :</span>
+        </label>
          <input type="text"  name="name" placeholder="Enter your full name " 
          value={name}
          onChange={(e)=>setName(e.target.value)} 
          className="flex-1  font-psemibold p-2 h-[50px] m-1 shadow-xl shadow-robin-950" /></div>
-        <div className="m-2"><label
+        <div className="m-2 flex"><label
         htmlFor="email"
-        className="text-3xl font-sans text-white-50"
-        >Email :</label>
+        className=" flex"
+        >
+          <Mail className=" w-[25px] h-[25px] text-bittersweet-400 "/>
+          <span className="m-1 text-white-50 text-xl">Email :</span>
+        </label>
          <input type="email"  name="email" placeholder="Enter your e-mail  " 
          value={Email}
          onChange={(e)=>setEmail(e.target.value)} 
          className="flex-1  font-psemibold p-2 h-[50px] m-1 shadow-xl shadow-robin-950" /></div>
-             <div> <label
-        htmlFor="el"
-        className="text-3xl font-sans text-white-50"
-        >Tel :</label>
+             <div className="flex m-2"> <label
+        htmlFor="tel"
+        className="flex"
+        ><Phone className=" w-[25px] h-[25px] text-bittersweet-400 "/>
+          <span className="m-1 text-white-50 text-xl">Tel :</span></label>
          <input type="tel"  name="tel" placeholder=" +39 0258 225 255 "
          value={Tel}
          onChange={(e)=>setTel(e.target.value)}
@@ -75,7 +71,7 @@ const RegisterPage = () => {
        
         <div className="m-2 flex flex-col ">  
         <button className="bg-bittersweet-400 hover:bg-bittersweet-900 cursor-pionter shadow-xl shadow-robin-950 m-2 text-white-50 text-xl p-2 rounded-xl w-full "
-        type="submit"> {loading ? <Spinner loading={loading} size={20}/>
+        type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
         <a href={`${import.meta.env.VITE_Api}auth/google`}>
           <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl w-full hover:bg-bittersweet-900 m-2"
@@ -83,12 +79,13 @@ const RegisterPage = () => {
         </div>
        <div>
         <p className="text-2xl font-sans text-white-50">I  have already an account ? <Link to={"/signin"}><a className="text-robin-600  text-3xl font-sans ">Login</a></Link></p>
-    </div></form>
-         </div> 
-         <div className=" ">
-        <img className="size-auto" src="/983569.jpg"/>
-    </div>  
-   
+    </div>
+    </form> 
+    </div> 
+    <div>
+        <img className="size-auto" src="/983569.jpg"/> 
+      </div> 
+
   </div>
   )
 }

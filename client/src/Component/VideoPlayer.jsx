@@ -1,16 +1,17 @@
 
 import ReactPlayer from 'react-player';
 
-const VideoPlayer = ({url,playref}) => {
+const VideoPlayer = ({url,playref,sub}) => {
   return (
    
-      <div className="w-full max-w-4xl m-1  ">
+      <div className="w-full  m-1  ">
         <ReactPlayer
         ref={playref}
           url={url} // Replace with your video URL
           controls={true}
           width="100%"
          height="400px"
+         subtitle={sub}
         
         />
       </div>

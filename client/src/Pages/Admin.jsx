@@ -2,35 +2,20 @@ import { Link, useNavigate } from "react-router"
 import { useState } from "react"
 import Spinner from "../Component/Spinner"
 import { toast } from "react-toastify"
+import { useAuthstore } from "../Store/Authstore"
 export const AdminSignin = () => {
-  const [loading,setLoading]= useState(false);
+  const { adminlogin , islogining} = useAuthstore();
   const [Email,setEmail] = useState('');
   const navigate = useNavigate();
  const submit = (formdata)=>{
-    setLoading(true);
+
 const email  = formdata.get("email");
 if(!email.match(/^[A-Za-z\._\-0-9]*[@][A-Za-z]*[\.][a-z]{2,4}$/) || email == ""){
   toast.error('invalid email');
-  setLoading(false);
   return;
 } 
-try {
- fetch(`${import.meta.env.VITE_Api}user/admin`,{
-  method:"POST",
-  credentials:'include',
-    headers:{
-      'Content-Type':'application/json'
-    },
-    body:JSON.stringify({email:email})
- }).then(resp => {
-  toast.success('login');
-  setLoading(false);
-  navigate('/admin');
- })
-} catch (error) {
-  toast.error(error);
-}
-
+adminlogin({email});
+navigate('/admin');
  }
   return (
   <div className=" bg-robin-900  h-full m-0 w-full  flex" >
@@ -49,7 +34,7 @@ try {
          onChange={(e)=>setEmail(e.target.value)} 
          className="p-2 h-[50px] m-1 shadow-xl shadow-robin-950"  /></div>
         <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 m-2 rounded-xl w-full hover:bg-bittersweet-900"
-         type="submit"> {loading ? <Spinner loading={loading} size={20}/>
+         type="submit"> {islogining? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
        
         

@@ -1,26 +1,27 @@
 import { BottomFeature } from "../Component/BottomFeature"
 import { useNavigate } from "react-router-dom"
 import SwipeComponent from "../Component/SwipeComponent"
-import { Link, useLoaderData } from "react-router"
-import { useEffect, useState } from "react"
+import { Link } from "react-router"
+import { useAuthstore } from "../Store/Authstore"
+import { useproduct } from "../Store/Productstore"
+import { Loader } from "lucide-react"
 
-export const Homepage = ({check}) => {
+export const Homepage = () => {
   const navigate = useNavigate();
-  const ans =useLoaderData();
-  const [all,setall]= useState(ans); 
+  const { user }= useAuthstore();
+  const check = user ? true : false;
+  const { films , series ,isloading } = useproduct();
+  if(isloading ){
+    return(
+      <div className="flex items-center justify-center h-screen">
+       <Loader className='size-10 animate-spin'/>
+      </div>);
+   }
+
   return (
     <>
     <section className="home bg-robin-900 bg-[url('/983569.jpg')] bg-center bg-fixed m-0 p-4">
-        <div className="flex justify-between   m-2">
-           <div><img className="logo w-[105px] h-[100px]  rounded-xl " src="/yak.png"/></div>
-           <div>
-          
-            <Link to={ check ? "/user":"/signin"}>
-            <button className=" bg-bittersweet-500 hover:bg-bittersweet-900 transition-discrete duration-2 
-            w-[200px] text-white-50 font-bold  rounded-xl  text-xl p-2">{ check ? "Account":"SignIn"}</button></Link>
-            
-           </div>
-        </div>
+    
         <div>
             <p className="text-white-50 text-center text-3xl">Film, serie TV e tanto altro, senza limiti</p>
             <p className="text-white-50 text-3xl text-center">A partire da 6,99 €. Disdici quando vuoi.<br/>
@@ -36,7 +37,7 @@ export const Homepage = ({check}) => {
     </section>
  <SwipeComponent
     ishome={true}
-    images={all}
+    images={films}
     />
    
     <section className="bg-linear-to-t from-robin-600 to-robin-950 m-0 p-4">
@@ -71,14 +72,5 @@ export const Homepage = ({check}) => {
   )
 }
 
-const HomeLoader = async ()=>{
 
-  const resp = await fetch(`${import.meta.env.VITE_Api}film`);
-  const resp2 = await fetch(`${import.meta.env.VITE_Api}series`);
-  if(!resp.ok || !resp2.ok) throw new Error("Error fetching data");
-  const data = await resp.json();
-  const data2 = await resp2.json();
-  const all = data.concat(data2);
-  return all;
-}
- export {Homepage as default, HomeLoader } 
+ export {Homepage as default } 

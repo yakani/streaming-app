@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { Insert, Get, Updateuser, Delete, Signin, AdminLogin, Sendcode, InsertAdmin, Authenticate } = require('../controllers/User.js');
+const { Insert, Get, Updateuser, Delete, Signin, AdminLogin, Sendcode, InsertAdmin, Authenticate, logout } = require('../controllers/User.js');
 const {protect}= require('../auth/Protect.js');
 router.post('/',  Insert);
 router.post('/login', Signin);
 router.post('/admin',AdminLogin);
+router.post('/logout',protect,logout);
 router.get('/',protect,Get);
 router.get('/code',Sendcode);
 router.post('/admin/insert',InsertAdmin);
