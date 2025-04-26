@@ -1,7 +1,8 @@
 const mongoose= require('mongoose');
 const hisSchema= new mongoose.Schema({
 user_id:{
-    type:String,
+    type:mongoose.Schema.Types.ObjectId,
+    unique:false,
 },
 episode_id:{
     type:String,

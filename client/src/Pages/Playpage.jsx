@@ -12,9 +12,9 @@ const Playerpage = ({isfilm ,}) => {
   const playerref = useRef(null);
   const {id} = useParams();
   const { user} = useAuthstore();
-  const { sample , selecte  ,Addhistory , isloadingsample , sampleCategory,isloadinghistory} = useproduct();
-  const {AddLike ,AddStar, ischeck, checkstar, isupdating ,message , getmessage ,
-    ishistory,isuploadingmessage, InsertMessage}  = Obserstore();
+  const { sample , selecte   , isloadingsample , sampleCategory, setdatahis} = useproduct();
+  const {AddLike ,AddStar, ischeck, checkstar ,message , getmessage ,
+    isuploadingmessage, Go, InsertMessage}  = Obserstore();
   const ans = sample;
 
   const [heart,setheart] = useState(false);
@@ -58,13 +58,14 @@ Duration:time,
   }:{ episode_id:id,
     Duration:time
   };
-Addhistory(data);
+return data;
 //navigate("/view");
 }
 useEffect(()=>{
-  if(!ishistory) return;
-  GoHome();
-},[ishistory]);
+  const data = GoHome();
+  setdatahis(data);
+  Go(true);
+},[playerref.current ? playerref.current.getCurrentTime():0]);
 const Increase= (data)=>{
   if(check)return;
   setstar(data);

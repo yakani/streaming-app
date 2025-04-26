@@ -7,10 +7,11 @@ import { Obserstore } from '../Store/Observation'
 
 const Navbar = () => {
     const {user ,logout} = useAuthstore();
-    const { selecte } = useproduct();
-    const { Go } = Obserstore();
+    const { selecte ,Addhistory,datahis } = useproduct();
+    const { Go ,ishistory} = Obserstore();
     const fire = ()=>{
-      if(!selecte || !selecte.path) return;
+      if(!selecte || !selecte.path || !user || !ishistory) return;
+      Addhistory(datahis);
       Go(false);
     }
   return (

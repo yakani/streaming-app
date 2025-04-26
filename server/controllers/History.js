@@ -5,21 +5,21 @@ const User = require('../models/User');
 
 const addHistory = handler(async (req, res) => {
     const {  episode_id, film_id, Duration } = req.body;
-    if(episode_id !=null){
-        const exist = await History.findOne({episode_id:episode_id});
+    let exist;
+    if(episode_id ){
+         exist = await History.findOne({episode_id:episode_id});
 
-        if(exist && exist.user_id == req.user._id){
-            res.status(406);
-            throw new Error('already exist');
-        }
+     
     }else{
-        const exist = await History.findOne({film_id:film_id});
-        if(exist && exist.user_id == req.user._id){
-            res.status(406);
-            throw new Error('already exist');
-        }
+         exist = await History.findOne({film_id:film_id});
+       
     }
-    
+    if(exist && exist.user_id == req.user._id ){
+        console.log('already exist');
+        return res.status(406).json({message:'already exist'});
+    }
+        
+        
     try {
 
         const history = await History.create({
@@ -33,6 +33,7 @@ const addHistory = handler(async (req, res) => {
         }
         
     } catch (error) {
+        console.log(error.message);
         return res.status(400).json({ message: error.message });
         
     }

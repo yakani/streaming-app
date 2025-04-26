@@ -6,6 +6,7 @@ export const useproduct = create((set,get)=>({
     films:[],
     series:[],
     ranks:[],
+    datahis:null,
     episodeserie:[],
     historys:[],
     episodes:[],
@@ -211,6 +212,8 @@ export const useproduct = create((set,get)=>({
           set({isloadingsample:false});
     },
     Addhistory:async(data)=>{
+        const {datahis} = get();
+        if(!datahis) return;
         set({isloadinghistory:true});
         try {
             const res = await axiosInstance.post('history',data);
@@ -221,6 +224,9 @@ export const useproduct = create((set,get)=>({
         }finally{
             set({isloadinghistory:false});
         }
+    },
+    setdatahis:(data)=>{
+        set({datahis:data});
     }
 
 }));

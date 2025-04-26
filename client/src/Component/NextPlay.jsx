@@ -2,12 +2,16 @@ import { useNavigate } from "react-router";
 import { useproduct } from "../Store/Productstore";
 import { Obserstore } from "../Store/Observation";
 const NextPlay = ({goals}) => {
-  const { getselected} = useproduct();
-  const { Go } = Obserstore();
+  const { getselected, Addhistory, datahis} = useproduct();
+  const { Go ,ishistory} = Obserstore();
   const navigate = useNavigate();
   const handleClick = (goal) => {
     getselected(goal);
     const url = goal.season == null ? `/play/film/${goal._id}`: `${goal.serie_id == null ? "/series":"/play/episode" }/${goal._id}`;
+      if(ishistory){
+        Addhistory(datahis);
+        Go(false);
+      }
     if(!url.includes("/series")){
       Go(true);
     }
