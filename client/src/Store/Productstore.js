@@ -220,7 +220,7 @@ export const useproduct = create((set,get)=>({
             set({historys:[...historys,res.data]});
             //toast.success("insert");
         } catch (error) {
-            toast.error(error.message);
+            console.log(error.message);
         }finally{
             set({isloadinghistory:false});
         }
