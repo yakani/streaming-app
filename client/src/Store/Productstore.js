@@ -216,7 +216,7 @@ export const useproduct = create((set,get)=>({
         if(!datahis) return;
         set({isloadinghistory:true});
         try {
-            const res = await axiosInstance.post('history',data);
+            const res = await axiosInstance.put('history',data);
             set({historys:[...historys,res.data]});
             //toast.success("insert");
         } catch (error) {

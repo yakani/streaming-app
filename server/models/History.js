@@ -2,17 +2,17 @@ const mongoose= require('mongoose');
 const hisSchema= new mongoose.Schema({
 user_id:{
     type:mongoose.Schema.Types.ObjectId,
-    unique:false,
+    unique:true,
 },
-episode_id:{
+episode_id:[{
     type:String,
     default:"",
-},
-film_id:{
+}],
+film_id:  [{
     type:String,
     default:"",
     
-},
+}],
 Duration:{
 type:Number,
 required:[true,'duration not present'],
