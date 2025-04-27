@@ -5,18 +5,26 @@ user_id:{
     unique:true,
 },
 episode_id:[{
-    type:String,
-    default:"",
+    id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Episode',
+    },
+ 
+    Duration:{
+        type:Number,
+        }
 }],
 film_id:  [{
-    type:String,
-    default:"",
-    
+    id:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Film',
+    },
+ 
+    Duration:{
+        type:Number,
+        }
 }],
-Duration:{
-type:Number,
-required:[true,'duration not present'],
-},
+
   createdAt:{
   	type : Date,
   }
