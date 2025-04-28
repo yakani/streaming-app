@@ -100,10 +100,51 @@ export const useproduct = create((set,get)=>({
             set({isloading:true});
             const res = await axiosInstance.get('history');
             const rank  = res.data;
-            const all = rank.episode_id.concat(rank.film_id);
-            console.log(all);
-            set({historys:all});
+            const n = rank[0].episode_id;
+            const m = rank[0].film_id;
+            let image = [];
+            let all= [];
             
+
+            if(!n && !m) return;
+            if(!n){
+                all = m;
+                 
+            }else if(!m){
+                all = n;
+            }else{
+                all = n.concat(m);
+            }
+            all.forEach(item => {
+                if(item.id.category){
+                  const n = {
+                    Tittle:item.id.Tittle,
+                    thumbail:item.id.thumbail,
+                    _id:item.id._id,
+                    category:item.id.category,
+                    path:item.id.path,
+                    play:item.Duration,
+                    Description:item.id.Description,
+                    subtittle:item.id.subtittle,
+                  };
+                  image.push(n);
+                }else{
+                  const m = {
+                    Tittle:item.id.Tittle,
+                    thumbail:item.id.thumbail,
+                    _id:item.id._id,
+                    season:item.id.season,
+                    path:item.id.path,
+                    play:item.Duration,
+                    Description:item.id.Description,
+                    subtittle:item.id.subtittle,
+                    serie_id:item.id.serie_id,
+                  };
+                  image.push(m);
+                }
+              });
+           
+            set({historys:image});   
         } catch (error) {
             console.log(error.message);
         }finally{

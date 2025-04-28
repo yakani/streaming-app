@@ -12,6 +12,7 @@ const Navbar = () => {
     const fire = ()=>{
       setplayhistory(false);
       if(!selecte || !selecte.path || !user || !ishistory) return;
+        
       Addhistory(datahis);
       Go(false);
 

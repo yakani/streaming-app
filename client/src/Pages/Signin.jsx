@@ -44,8 +44,8 @@ navigate('/view');
          type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
         <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex justify-center m-2">
-        <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl  hover:bg-bittersweet-900 m-2"
-         > signin with google</button></a>
+        <p className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl  hover:bg-bittersweet-900 m-2"
+         > signin with google</p></a>
         <p className="text-2xl font-sans text-white-50">I dont have already an account ? <Link to={"/register"}><a className="text-robin-400 hover:text-robin-100 font-sans ">Register</a></Link></p>
         <p className="text-2xl font-sans text-white-50">I am the admin ? <Link to={"/admin/login"}><a className="text-robin-400 hover:text-robin-100 font-sans ">Admin</a></Link></p>
         </div>

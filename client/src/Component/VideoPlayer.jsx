@@ -1,7 +1,8 @@
-
 import ReactPlayer from 'react-player';
 
 const VideoPlayer = ({url,playref,sub , time}) => {
+
+  playref.current.seekTo(time, 'seconds');
   return (
    
       <div className="w-full  m-1  ">
@@ -11,14 +12,13 @@ const VideoPlayer = ({url,playref,sub , time}) => {
           controls={true}
           width="100%"
          height="400px"
-         subtitle={sub}
          config={{
-          file: {
-            attributes: {
-              start:time  // Start at 30 seconds
-            }
-          }
-        }}
+  file: {
+    tracks: [
+      { kind: 'subtitles', src: sub, srcLang: 'en', default: true }
+    ]
+  }
+}}
         
         />
       </div>

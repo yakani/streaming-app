@@ -108,7 +108,7 @@ const Comments = async(data)=>{
          
      
          <VideoPlayer
-         time={playhistory ? goal.play : 0}
+         time={goal?.play !== undefined ? goal.play : 0}
     playref={playerref}
     url={goal.path}
     sub={goal.subtittle}

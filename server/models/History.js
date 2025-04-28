@@ -17,7 +17,7 @@ episode_id:[{
 film_id:  [{
     id:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'Film',
+        ref:'Films',
     },
  
     Duration:{

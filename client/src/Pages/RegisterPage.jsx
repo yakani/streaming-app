@@ -74,8 +74,8 @@ const RegisterPage = () => {
         type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
         <a href={`${import.meta.env.VITE_Api}auth/google`}>
-          <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl w-full hover:bg-bittersweet-900 m-2"
-      > signUp with google </button></a>
+          <p className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl w-full hover:bg-bittersweet-900 m-2"
+      > signUp with google </p></a>
         </div>
        <div>
         <p className="text-2xl font-sans text-white-50">I  have already an account ? <Link to={"/signin"}><a className="text-robin-600  text-3xl font-sans ">Login</a></Link></p>

@@ -1,11 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef ,useState} from "react";
 import { useproduct } from "../Store/Productstore";
 import { useNavigate } from "react-router";
 import { Obserstore } from "../Store/Observation";
 
 const SwipeComponent = ({ishome=true, titolo , images,size="h-[300px] w-[300px]"}) => {
   const galleryRef = useRef(null);
-  const [goal ,setgoal] = useState(images);
   const { getselected} = useproduct();
   const { Go ,setplayhistory } =  Obserstore();
   let all =[];
@@ -18,39 +17,10 @@ const SwipeComponent = ({ishome=true, titolo , images,size="h-[300px] w-[300px]"
     }
     navigate(url);
   };
-  if(images[0].id){
-    setplayhistory(true);
-    images.forEach(item => {
-      if(item.id.category){
-        const n = {
-          Tittle:item.id.Tittle,
-          thumbail:item.id.thumbail,
-          _id:item.id._id,
-          category:item.id.category,
-          path:item.id.path,
-          play:item.Duration,
-          Description:item.id.Description,
-          subtittle:item.id.subtittle,
-        };
-        all.push(n);
-      }else{
-        const m = {
-          Tittle:item.id.Tittle,
-          thumbail:item.id.thumbail,
-          _id:item.id._id,
-          season:item.id.season,
-          path:item.id.path,
-          play:item.Duration,
-          Description:item.id.Description,
-          subtittle:item.id.subtittle,
-          serie_id:item.id.serie_id,
-        };
-        all.push(m);
-      }
-      setgoal(all);
-    });
 
-  }
+
+
+
   const swipeLeft = () => {
     if (galleryRef.current) {
       galleryRef.current.scrollBy({ left: -300, behavior: "smooth" });
@@ -83,7 +53,10 @@ const SwipeComponent = ({ishome=true, titolo , images,size="h-[300px] w-[300px]"
       </button>}
     
       <div className="gallery" ref={galleryRef}>
-        {goal.map((image, index) => (
+        
+        {
+        
+        images.map((image, index) => (
           <div key={index} className={"gallery-item "+size}>
            
          <img src={image.thumbail} alt={`Gallery item ${index + 1}`}   className=" shadow-xl shadow-robin-950" onClick={()=>handleClick(image)}/>

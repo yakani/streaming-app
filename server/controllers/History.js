@@ -9,9 +9,11 @@ const getHistory = handler(async (req, res) => {
     
 
     try {
-        const history = await History.find({ user_id:req.user._id });
+        const history = await History.find({ user_id:req.user._id }).populate({path:'episode_id.id',select:'Tittle thumbail Description subtittle path season serie_id'}).populate({path:'film_id.id',select:'Tittle thumbail Description subtittle path category'});
+      
         return res.status(200).json(history);
     } catch (error) {
+       
         return res.status(400).json({ message: error.message });
     }
 });
@@ -50,10 +52,12 @@ const UpdateOne = handler(async (req, res) => {
             exist.film_id.push({ id : film_id,Duration});
         }
          await exist.save();
-         const all  =await History.find({ user_id:req.user._id }).populate({path:'episode_id.id',model:'Episode'}).populate({path:'film_id.id',model:'Film'});
+         const all  =await History.find({ user_id:req.user._id }).populate({path:'episode_id.id',select:'Tittle thumbail Description subtittle path season serie_id'}).populate({path:'film_id.id',select:'Tittle thumbail Description subtittle path category'});
+        
         return res.status(200).json(all);
     } catch (error) {
         return res.status(400).json({ message: error.message });
+        
     }
 });
 const ReviewHistory = handler(async (req,res)=>{
