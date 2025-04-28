@@ -36,7 +36,7 @@ const RegisterPage = () => {
   
     <div className="flex flex-col justify-center items-center p-6 sm:p-12"> 
       <p className="text-2xl text-white-50 text-semibold mb-4 text-6xl  antialiased">Signup into Yak</p>
-      <form action={submit}>
+      <form action={submit} className="space-y-6">
       <div className="m-2 flex"><label
         htmlFor="name"
         className="flex"
@@ -70,22 +70,22 @@ const RegisterPage = () => {
          className="p-2 h-[50px] m-1 shadow-xl shadow-robin-950 "  /></div>
        
         <div className="m-2 flex flex-col ">  
-        <button className="bg-bittersweet-400 hover:bg-bittersweet-900 cursor-pionter shadow-xl shadow-robin-950 m-2 text-white-50 text-xl p-2 rounded-xl w-full "
+        <button className="bg-bittersweet-400 hover:bg-bittersweet-900 cursor-pionter shadow-xl shadow-robin-950 m-2 text-white-50 text-xl p-2   "
         type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
-        <a href={`${import.meta.env.VITE_Api}auth/google`}>
-          <p className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl w-full hover:bg-bittersweet-900 m-2"
-      > signUp with google </p></a>
+        <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900">
+        <img src="/google.png" className="w-[40px] h-[40px] text-bittersweet-50  m-1" />
+          <p className="text-white-50 text-xl p-2 text-center rounded-xl w-full "
+      > signUp  </p></a>
         </div>
        <div>
         <p className="text-2xl font-sans text-white-50">I  have already an account ? <Link to={"/signin"}><a className="text-robin-600  text-3xl font-sans ">Login</a></Link></p>
     </div>
     </form> 
     </div> 
-    <div>
+    <div className="h-full">
         <img className="size-auto" src="/983569.jpg"/> 
       </div> 
-
   </div>
   )
 }

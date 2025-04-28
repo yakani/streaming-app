@@ -3,7 +3,7 @@ import { useState } from "react"
 import Spinner from "../Component/Spinner"
 import { toast } from "react-toastify"
 import { useAuthstore } from "../Store/Authstore"
-import { Mail } from "lucide-react"
+import { Goal, GoalIcon, Mail } from "lucide-react"
 export const Signin = () => {
   const { login, islogining}= useAuthstore();
   const [Email,setEmail] = useState('');
@@ -40,12 +40,13 @@ navigate('/view');
          value={Email}
          onChange={(e)=>setEmail(e.target.value)} 
          className="flex-1 text-center p-1 text-white-50"  /></div>
-        <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 m-1 rounded-lg   hover:bg-bittersweet-900"
+        <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 m-1   hover:bg-bittersweet-900"
          type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
-        <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex justify-center m-2">
-        <p className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 rounded-xl  hover:bg-bittersweet-900 m-2"
-         > signin with google</p></a>
+        <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900 ">
+        <img src="/google.png" className="w-[40px] h-[40px] text-bittersweet-50  m-1" />
+        <p className=" text-white-50 text-xl p-2 rounded-xl  "
+         > signin </p></a>
         <p className="text-2xl font-sans text-white-50">I dont have already an account ? <Link to={"/register"}><a className="text-robin-400 hover:text-robin-100 font-sans ">Register</a></Link></p>
         <p className="text-2xl font-sans text-white-50">I am the admin ? <Link to={"/admin/login"}><a className="text-robin-400 hover:text-robin-100 font-sans ">Admin</a></Link></p>
         </div>
