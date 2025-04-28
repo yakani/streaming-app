@@ -14,7 +14,7 @@ const Playerpage = ({isfilm ,}) => {
   const { user} = useAuthstore();
   const { sample , selecte   , isloadingsample , sampleCategory, setdatahis} = useproduct();
   const {AddLike ,AddStar, ischeck, checkstar ,message , getmessage ,
-    isuploadingmessage, Go, InsertMessage}  = Obserstore();
+    isuploadingmessage, Go, InsertMessage, playhistory}  = Obserstore();
   const ans = sample;
 
   const [heart,setheart] = useState(false);
@@ -108,6 +108,7 @@ const Comments = async(data)=>{
          
      
          <VideoPlayer
+         time={playhistory ? goal.play : 0}
     playref={playerref}
     url={goal.path}
     sub={goal.subtittle}

@@ -100,15 +100,8 @@ export const useproduct = create((set,get)=>({
             set({isloading:true});
             const res = await axiosInstance.get('history');
             const rank  = res.data;
-            const all = [];
-            rank.forEach(element => {
-                const n = get().films.find(item => item._id == element.film_id) ;
-                const m = get().episodes.find(item => item._id == element.episode_id);
-                if(n){
-                  all.push(n);}
-                if(m){
-                  all.push(m);}
-            });
+            const all = rank.episode_id.concat(rank.film_id);
+            console.log(all);
             set({historys:all});
             
         } catch (error) {

@@ -8,11 +8,13 @@ import { Obserstore } from '../Store/Observation'
 const Navbar = () => {
     const {user ,logout} = useAuthstore();
     const { selecte ,Addhistory,datahis } = useproduct();
-    const { Go ,ishistory} = Obserstore();
+    const { Go ,ishistory , setplayhistory} = Obserstore();
     const fire = ()=>{
+      setplayhistory(false);
       if(!selecte || !selecte.path || !user || !ishistory) return;
       Addhistory(datahis);
       Go(false);
+
     }
   return (
     <div className='flex justify-between p-2  shadow-2xl shadow-robin-950 rounded-xl '>

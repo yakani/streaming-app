@@ -5,19 +5,20 @@ const User = require('../models/User');
  passport.use(new GoogleStrategy({
     clientID: process.env.clientID,
     clientSecret: process.env.clientSecret,
-    callbackURL: "http://localhost:7000/auth/google/callback"
+    callbackURL: "http://localhost:7000/auth/google/callback",
+    scope: ['profile', 'email']
   },
   async function(issuers, profile, done) {
-    const user = await User.findOne({googleId:profile.id}) ;
-    if(user){
-      return done(null, user);
-    }
-    const newUser = await User.create({
-      googleId: profile.id,
-      name: '',
-      email: '',
+    const email = profile.emails[0].value;
+    let user = await User.findOne({email}) ;
+  
+   if(!user){
+    user = await User.create({
+      email,
+      name: profile.displayName,
     });
-    done(null, newUser);
+   }
+    done(null, user);
   }));
   passport.serializeUser(function(user, cb) {
     process.nextTick(function() {

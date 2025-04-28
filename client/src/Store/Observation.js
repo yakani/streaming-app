@@ -4,12 +4,14 @@ import { useproduct } from "./Productstore";
 import { toast } from "react-toastify";
 import { axiosInstance } from "../lib/axios.config";
 export const Obserstore = create((set,get)=>({
+playhistory:false,
 isupdating: false,
 message:[],
 isuploadingmessage:false,
 ischeck:false,
 ishistory:false,
 Go:(t)=>set({ishistory:t}),
+setplayhistory:(t)=>set({playhistory:t}),
 AddLike:async(data)=>{
     try {
         set({isupdating:true});

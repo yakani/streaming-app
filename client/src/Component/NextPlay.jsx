@@ -3,9 +3,10 @@ import { useproduct } from "../Store/Productstore";
 import { Obserstore } from "../Store/Observation";
 const NextPlay = ({goals}) => {
   const { getselected, Addhistory, datahis} = useproduct();
-  const { Go ,ishistory} = Obserstore();
+  const { Go ,ishistory ,setplayhistory} = Obserstore();
   const navigate = useNavigate();
   const handleClick = (goal) => {
+    setplayhistory(false);
     getselected(goal);
     const url = goal.season == null ? `/play/film/${goal._id}`: `${goal.serie_id == null ? "/series":"/play/episode" }/${goal._id}`;
       if(ishistory){

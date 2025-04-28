@@ -6,6 +6,6 @@ const Google  = handler ((req,res)=>{
         return res.status(401).json({message: 'Not authorized'});
     }
     generateToken(res,req.user._id);
-    res.redirect('http://localhost:5173/');
+    res.redirect(process.env.CLIENT_URL);
 });
 module.exports = {Google}

@@ -4,9 +4,9 @@ const { Google } = require('../controllers/auth');
 require('../auth/Passport');
 const router = express.Router();
 
-router.get('/google',passport.authenticate("google"));
+router.get('/google',passport.authenticate('google'));
 router.get('/google/callback', passport.authenticate('google', {
-    failureRedirect: 'http://localhost:5173/signin'
+    failureRedirect: `${process.env.CLIENT_URL}/signin`,
   }), Google);
 
 module.exports=router;

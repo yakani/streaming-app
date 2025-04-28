@@ -1,7 +1,7 @@
 
 import ReactPlayer from 'react-player';
 
-const VideoPlayer = ({url,playref,sub}) => {
+const VideoPlayer = ({url,playref,sub , time}) => {
   return (
    
       <div className="w-full  m-1  ">
@@ -12,6 +12,13 @@ const VideoPlayer = ({url,playref,sub}) => {
           width="100%"
          height="400px"
          subtitle={sub}
+         config={{
+          file: {
+            attributes: {
+              start:time  // Start at 30 seconds
+            }
+          }
+        }}
         
         />
       </div>

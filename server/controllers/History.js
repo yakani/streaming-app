@@ -50,8 +50,8 @@ const UpdateOne = handler(async (req, res) => {
             exist.film_id.push({ id : film_id,Duration});
         }
          await exist.save();
-         
-        return res.status(200).json(exist);
+         const all  =await History.find({ user_id:req.user._id }).populate({path:'episode_id.id',model:'Episode'}).populate({path:'film_id.id',model:'Film'});
+        return res.status(200).json(all);
     } catch (error) {
         return res.status(400).json({ message: error.message });
     }
