@@ -13,6 +13,14 @@ const [uploadProgress, setuploadProgress] = useState(0);
 
 
 const navigate  = useNavigate();
+function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
 const submit = async (Data)=>{
 
 if(episode){
@@ -21,7 +29,7 @@ if(episode){
     
     if(seriename == ""){
         toast.error('filled the serie name');
-        setLoading(false);
+    
         return;
     }
     const data  = series.find(item => item.Tittle == seriename);
@@ -49,18 +57,20 @@ formlast.append('Description',description);
         toast.error('video too large');
         return;
     }
+    
     formlast.append('file',file);
     formlast.append('season',season);
     formlast.append('serie',"");
 
     if(isfilm){
+        const subtittle = Data.get('subtittle');
+        const dataUrl = await readFileAsDataURL(subtittle);
+        formlast.append('subtittle', dataUrl);
+
      Insertfilm(formlast);   
     }else{
         Insertserie(formlast);
     }
-    
-    
-
 
 }
 useEffect(()=>{
@@ -151,6 +161,14 @@ return <>
     name="file"
     />
 {isfilm ? <>
+<label htmlFor="subtittle"
+className="flex justify-center text-3xl font-sans text-center text-white-50 m-1">
+<p className="text-2xl text-white-50 m-1">Subtittle</p>
+<input type="file" name="subtittle" 
+accept=".pdf,.xls,.xlsx,.doc,.docx,.ppt,.pptx"
+
+className="flex-1 shadow-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900" />
+</label>
 </>:<>
 
 <label

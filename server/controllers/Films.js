@@ -21,6 +21,16 @@ const upload = require('../midleware/multer.js');
       const { Tittle, category,Description, subtittle} = req.body;
   
       // Upload to Cloudinary
+      if(subtittle  && subtittle != ''){
+        const uploadsub = await cloudinary.uploader.upload(subtittle, 
+        { resource_type: 'raw',
+            folder: 'uploads',
+         }
+      );
+        subtittle = uploadsub.secure_url ;
+      }
+      
+
       const result = await new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           {

@@ -10,7 +10,16 @@ const { id } = useParams();
 const { Insertepisode ,isloading, progress} = useproduct();
 const navigate  = useNavigate();
 const [uploadProgress, setuploadProgress] = useState(0);
-const submit = (formData)=>{
+
+function readFileAsDataURL(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+const submit = async(formData)=>{
  let data = new FormData();
  console.log(import.meta.env.VITE_Api);
 const tittle = formData.get('tittle');
@@ -30,13 +39,16 @@ if(tittle == "" || description == "" ){
         toast.error('video too large');
         return;
     }
+    const subtittle = formData.get('subtittle');
+    const dataUrl = await readFileAsDataURL(subtittle);
+    data.append('subtittle', dataUrl);
    data.append('Tittle',tittle);
    data.append('file',file);
    data.append('category',category);
    data.append('Description',description);
    data.append('serie',id);
     data.append('season',season);
-data.append('subtittle',"");
+data.append('subtittle',subtittle);
 Insertepisode(data);
 }
 
@@ -61,7 +73,14 @@ return <>
     name="tittle"
     />
    
+   <label htmlFor="subtittle"
+className="flex justify-center text-3xl font-sans text-center text-white-50 m-1">
+<p className="text-2xl text-white-50 m-1">Subtittle</p>
+<input type="file" name="subtittle" 
+accept=".pdf,.xls,.xlsx,.doc,.docx,.ppt,.pptx"
 
+className="flex-1 shadow-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900" />
+</label>
      <label
     htmlFor="description"
     className="text-3xl font-sans text-center text-white-50 m-1">

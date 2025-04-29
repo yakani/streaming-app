@@ -17,6 +17,14 @@ const upload = require('../midleware/multer.js');
             // Extract form data
             const { Tittle, Description, serie, season ,subtittle} = req.body;
         
+              if(subtittle  && subtittle != ''){
+                    const uploadsub = await cloudinary.uploader.upload(subtittle, 
+                    { resource_type: 'raw',
+                        folder: 'uploads',
+                     }
+                  );
+                    subtittle = uploadsub.secure_url ;
+                  }
             // Upload to Cloudinary
             const result = await new Promise((resolve, reject) => {
               const uploadStream = cloudinary.uploader.upload_stream(
