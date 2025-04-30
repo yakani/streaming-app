@@ -47,9 +47,9 @@ const SwipeComponent = ({ishome=true, titolo , images,size="h-[300px] w-[300px]"
        
        <p className="text-white-100 text-5xl  font-bold  text-center m-3">{titolo}</p>
         <div className="swap">
-        <div className={ishome ? `gallery-container max-w-[${images.length *125}px]`: `gallery-container max-w-[${images.length*200}px]`}>
+        <div className={ishome ? `gallery-container max-w-[${images.length *125}px] `: `gallery-container max-w-[${images.length*200}px] `}>
           {( images.length < 5  && !ishome )   ? <></> :  <button className="swipe-button left" onClick={swipeLeft}>
-   <img  src="/left.png"  className="h-[20px] w-[20px] cursor-pointer "/>
+   <img  src="/left.png"  className="h-[20px] w-[20px] cursor-pointer  "/>
       </button>}
     
       <div className="gallery" ref={galleryRef}>

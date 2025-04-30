@@ -29,22 +29,15 @@ const SeriePage = () => {
         <div  className=" flex flex-col ">
            <div className="flex justify-between m-4"> 
             
-            <img src="/left.png" alt="" className="w-[40px] h-[40px] shadow-lg shadow-robin-950 cursor-pointer" 
-            onClick={()=>navigate('/')} />
+            
             <div className={`flex flex-col  bg-center w-[500px] h-[300px] justify-between p-4  rounded-lg shadow-3xl shadow-robin-950 cursor-pointer hover:bg-[url(/black.jpg)]`}
             style={{backgroundImage:`url(${goal.thumbail})`,backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
                 
-                <div className="flex justify-center m-2">
-                    <img src="/play.png" alt="" className="m-2  cursor-pointer w-[30px]" />
-                
-                </div>
+             
                 <p className="text-5xl m-2 text-white-50 text-center mb-4">{goal.Tittle}</p>
                 <p className="text-white-50 text-2xl overflow-hidden">{goal.Description}</p>
             </div>
-            <div className="flex">
-            <img src="/search.png" alt=""  className="w-[40px] h-[40px] shadow-lg shadow-robin-950 m-1 cursor-pointer"
-            onClick={()=>navigate('/search')}/>
-            </div>
+           
             
            </div>
            <div className="flex flex-wrap justify-center ">

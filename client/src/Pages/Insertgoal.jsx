@@ -83,12 +83,12 @@ setuploadProgress(progress);
 },[progress])
   
 return <>
-<nav className=" flex  justify-center  shadow-3xl shadow-robin-950 p-4 bg-robin-700">
-    <p className="text-white-50 text-6xl p-2 ">Upload film or Series</p>
-    <p className="m-2 text-white-50 text-2xl cursor-pointer " onClick={ ()=>setepisode(!episode)}>{!episode ? "Add episode": "Leave"}</p>
+<nav className=" flex  justify-center  shadow-3xl shadow-robin-950 p-4 bg-robin-700 sm:rounded-xl m-2">
+    <p className="text-white-50 text-6xl p-2 sm:text-4xl ">Upload film or Series</p>
+    <p className="m-2 text-white-50 text-2xl cursor-pointer sm:text-xl " onClick={ ()=>setepisode(!episode)}>{!episode ? "Add episode": "Leave"}</p>
 </nav>
-<div className="flex justify-center m-2">
-<form action={submit} className=" flex flex-col jusify center shadow-4xl  border bg-robin-700 shawdow-robin-950  rounded-xl m-4 p-2 " multiple>
+<div className="flex justify-center m-2 ">
+<form action={submit} className=" flex flex-col jusify center shadow-4xl  border bg-robin-700 shawdow-robin-950  rounded-xl m-4 p-2  " multiple>
     
     {!episode ?  <>
     <div className="flex justify centerm-2 ">
@@ -124,7 +124,7 @@ return <>
         Tittle 
     </label>   
     <input type="text"
-    className="flex-1 shadow-lg rounded-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900"
+    className="flex-1 shadow-lg rounded-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900 sm:ma-w-[200px]"
     placeholder="Enter the title"
     name="tittle"
     />
@@ -156,18 +156,17 @@ return <>
    {!isfilm ? "serie": "Film"}
     </label>   
     <input type="file"
-    className="flex-1 s  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900"
+    className="flex-1   m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900"
     placeholder="selected the film"
     name="file"
     />
 {isfilm ? <>
 <label htmlFor="subtittle"
-className="flex justify-center text-3xl font-sans text-center text-white-50 m-1">
-<p className="text-2xl text-white-50 m-1">Subtittle</p>
+className="flex justify-center  font-sans text-center text-white-50 m-1">
+<p className="text-xl text-white-50 m-1">Subtittle</p>
 <input type="file" name="subtittle" 
 accept=".pdf,.xls,.xlsx,.doc,.docx,.ppt,.pptx"
-
-className="flex-1 shadow-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900" />
+className="flex-1   m-1  text-center text-robin-900 ::placeholder: text-robin-900" />
 </label>
 </>:<>
 

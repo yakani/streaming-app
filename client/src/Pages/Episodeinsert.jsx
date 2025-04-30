@@ -74,12 +74,12 @@ return <>
     />
    
    <label htmlFor="subtittle"
-className="flex justify-center text-3xl font-sans text-center text-white-50 m-1">
+className="flex justify-center  font-sans text-center text-white-50 m-1">
 <p className="text-2xl text-white-50 m-1">Subtittle</p>
 <input type="file" name="subtittle" 
 accept=".pdf,.xls,.xlsx,.doc,.docx,.ppt,.pptx"
 
-className="flex-1 shadow-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900" />
+className="flex-1   m-1  text-center text-robin-900 ::placeholder: text-robin-900" />
 </label>
      <label
     htmlFor="description"
