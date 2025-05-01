@@ -1,17 +1,19 @@
 import ReactPlayer from 'react-player';
 
 const VideoPlayer = ({url,playref,sub , time}) => {
-
+if(time >0 && playref.current){
   playref.current.seekTo(time, 'seconds');
+}
+  
   return (
    
-      <div className="w-full  m-1  ">
+      <div className="w-full     ">
         <ReactPlayer
         ref={playref}
           url={url} // Replace with your video URL
           controls={true}
           width="100%"
-         height="400px"
+         height="100%"
          config={{
   file: {
     tracks: [

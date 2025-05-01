@@ -147,7 +147,7 @@ return <>
     </label>   
     <input type="text"
     className="flex-1 shadow-lg rounded-xl shadow-robin-950  m-1 p-2 text-center text-robin-900 ::placeholder: text-robin-900"
-    placeholder="Enter the category"
+    placeholder="drama comedy action"
     name="category"
     />
    <label

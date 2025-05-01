@@ -4,7 +4,7 @@ import SwipeComponent from "../Component/SwipeComponent"
 import { Link } from "react-router"
 import { useAuthstore } from "../Store/Authstore"
 import { useproduct } from "../Store/Productstore"
-import { Loader } from "lucide-react"
+import { FilmIcon, Loader, Tv, Tv2Icon } from "lucide-react"
 
 export const Homepage = () => {
   const navigate = useNavigate();
@@ -47,17 +47,19 @@ export const Homepage = () => {
         <div className="flex flex-col p-2 rounded-2xl shadow-2xl shadow-robin-950 m-4 bg-bittersweet-500 w-[300px] items-center  ">
           <p className="text-white-50 text-3xl text-center sm:text-2xl">Goditi Netflix sulla tua TV</p>
           <p className="text-white-100 text-lg text-center ">Guarda Netflix su smart TV, Playstation, Xbox, Chromecast, Apple TV, lettori Blu-ray e molti altri dispositivi.</p>
-          <div className="flex justify-end h-[100px] w-[100px] m-1"><img src="/back.webp" alt="" className="justify-items-end" /></div>
+          <Tv className="text-white-50 h-[100px] w-[100px] m-1" />
         </div>
         <div className="flex flex-col p-2 rounded-2xl shadow-2xl shadow-robin-950 m-4 bg-bittersweet-500 w-[300px] items-center">
           <p className="text-white-50 text-3xl text-center">Scarica le tue serie da guardare offline</p>
           <p className="text-white-100 text-lg text-center">Salva facilmente i tuoi preferiti così avrai sempre qualcosa da guardare.</p>
-         <div className="flex justify-end h-[100px] w-[100px] m-1"> <img src="/983569.jpg" alt="" className="justify-items-end" /></div>
+          <FilmIcon className="text-white-50 h-[100px] w-[100px] m-1" />
         </div>
         <div className="flex flex-col p-2 rounded-2xl shadow-2xl shadow-robin-950 m-4 bg-bittersweet-500 w-[300px] items-center">
           <p className="text-white-50 text-3xl text-center">Guarda Netflix ovunque</p>
           <p className="text-white-100 text-lg text-center">Cellulare, tablet, laptop e TV: scegli tu cosa usare per guardare in streaming film e serie TV senza limiti.</p>
-          <div  className="flex justify-end h-[100px] w-[100px] m-1"><img src="/back.webp" alt="" className="justify-items-end" /></div>
+          
+          <Tv2Icon className="text-white-50 h-[100px] w-[100px] m-1" />
+         
         </div>
        
         </div>

@@ -23,18 +23,18 @@ const SeriePage = () => {
       </div>   
     )
    }
-   console.log(episodeserie);
+  
 
     return (
         <div  className=" flex flex-col ">
-           <div className="flex justify-between m-4"> 
+           <div className="flex justify-center m-4"> 
             
             
-            <div className={`flex flex-col  bg-center w-[500px] h-[300px] justify-between p-4  rounded-lg shadow-3xl shadow-robin-950 cursor-pointer hover:bg-[url(/black.jpg)]`}
+            <div className={`flex flex-col  bg-center w-[500px] h-[300px] justify-between p-2  rounded-lg shadow-3xl shadow-robin-950 cursor-pointer hover:bg-[url(/black.jpg)]`}
             style={{backgroundImage:`url(${goal.thumbail})`,backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
                 
              
-                <p className="text-5xl m-2 text-white-50 text-center mb-4">{goal.Tittle}</p>
+                <p className="text-5xl m-2 text-white-50 text-center ">{goal.Tittle}</p>
                 <p className="text-white-50 text-2xl overflow-hidden">{goal.Description}</p>
             </div>
            

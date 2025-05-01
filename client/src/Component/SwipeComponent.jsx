@@ -9,6 +9,7 @@ const SwipeComponent = ({ishome=true, titolo , images,size="h-[300px] w-[300px]"
   const { Go ,setplayhistory } =  Obserstore();
   let all =[];
   const navigate  = useNavigate();
+  if(images.length == 0)return <></>;
   const handleClick = (image) => {
     getselected(image);
     const url = image.season == null ? `/play/film/${image._id}`: `${image.serie_id == null ? "/series":"/play/episode" }/${image._id}`;

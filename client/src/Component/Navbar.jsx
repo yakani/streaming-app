@@ -1,4 +1,4 @@
-import { HomeIcon, LogIn, LogOut, Search, User } from 'lucide-react'
+import { Ampersand, HomeIcon, LogIn, LogOut, LogOutIcon, Search, SearchIcon, SearchXIcon, User } from 'lucide-react'
 import React from 'react'
 import { Link } from 'react-router'
 import { useAuthstore } from '../Store/Authstore'
@@ -27,19 +27,19 @@ const Navbar = () => {
         </Link>
         {
             user ?<> <Link onClick={fire} className='m-2' to={ "/user" }>
-        <img src="/user.png" alt="" className='w-[40px] h-[40px] cursor-pointer shadow-xl shadow-robin-950  m-1'/>
+        <User className='w-[40px] h-[40px] text-bittersweet-500 cursor-pointer shadow-xl shadow-robin-950  m-1' />
         <span className="hidden text-white-50 sm:inline">Profile</span>
         </Link>
         <Link onClick={fire} className='m-2' to={ "/search"}>
-        <img src="/search.png" alt=""  className='w-[40px] h-[40px] cursor-pointer shadow-xl shadow-robin-950  m-1'/>
+        <SearchIcon className='w-[40px] h-[40px] text-bittersweet-500 cursor-pointer shadow-xl shadow-robin-950  m-1' />
         <span className="hidden text-white-50 sm:inline">Search</span>
         </Link>
         {user.isadmin ? <Link onClick={fire} className='m-2' to={"/admin"}>
-        <img src="/add.png" alt="" className='w-[40px] h-[40px] cursor-pointer shadow-xl shadow-robin-950  m-1'/>
+        <Ampersand className='w-[40px] h-[40px] text-bittersweet-500 cursor-pointer shadow-xl shadow-robin-950  m-1' />
         <span className="hidden text-white-50 sm:inline">Admin</span>
         </Link>: <></>}
         <button onClick={logout}> 
-            <img src="/sign.png" alt="" className='w-[40px] h-[40px] cursor-pointer shadow-xl shadow-robin-950  m-1' />
+            <LogOutIcon className='w-[40px] h-[40px] text-bittersweet-500 cursor-pointer shadow-xl shadow-robin-950  m-1' />
             <span className="hidden text-white-50 sm:inline">logout</span>
         </button></>:<>
         <Link onClick={fire} className='m-2' to={"/signin"}>

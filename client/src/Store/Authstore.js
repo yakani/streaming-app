@@ -14,7 +14,7 @@ export const useAuthstore = create((set,get)=>({
             set({user:res.data});
            
         } catch (error) {
-            toast.error(error.message);
+            console.log(error.message);
         }finally{
              set({ischecking: false});
         }

@@ -36,8 +36,8 @@ const SearchPage = () => {
       </div>
       { show ? 
       <SwipeComponent
-      size="w-[100px] h-[100px]"
-      titolo={"Top 10"}
+      size="w-[200px] h-[200px]"
+      titolo={""}
       images={goal}
       ishome={false}
       
