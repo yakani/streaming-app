@@ -28,7 +28,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 const corsoption = {
-    origin: ["http://localhost:5173"],
+    origin: [process.env.CLIENT_URL],
     methods: ["POST", "GET", "PUT", "DELETE"], 
     credentials: true,
     };
