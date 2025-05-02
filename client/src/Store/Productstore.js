@@ -61,6 +61,7 @@ export const useproduct = create((set,get)=>({
             set({isloading:true});
             const res = await todoInstance.get('observe/complete');
             const rank  = res.data;
+            if(!rank || rank.length == 0) return;
             const all = [];
             rank.forEach(element => {
                 const n = get().films.find(item => item._id == element.name) ;
@@ -100,6 +101,7 @@ export const useproduct = create((set,get)=>({
             set({isloading:true});
             const res = await axiosInstance.get('history');
             const rank  = res.data;
+            if(!rank || rank.length == 0) return;
             const n = rank[0].episode_id;
             const m = rank[0].film_id;
             let image = [];

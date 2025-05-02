@@ -15,7 +15,7 @@ const ViewPage = () => {
   const [serie, setserie] = useState(series);
   const [rank,setrank] = useState(ranks);
   const [show ,setshow] = useState('');
-  const [affich,setaffich] = useState(series[0]);
+  const [affich,setaffich] = useState(series[0] || film[0] || null);
 
 
 const Goto = ()=>{
@@ -29,9 +29,9 @@ const Goto = ()=>{
 
 useEffect(()=>{
   if(show == "" || show == "serie" ){
-    setaffich(serie[0]);
+    setaffich(serie[0] || null);
   }else if(show == "film"){
-    setaffich(film[0]);
+    setaffich(film[0] || null);
   } 
 },[show]);
   const handleChange = (event) => {
@@ -53,6 +53,7 @@ useEffect(()=>{
             <option value="romance" className="text-bittersweet-400">romance</option>
           </select></div>
       </div>
+      { !affich ? <></>:
       <div className={`flex flex-col shadow-4xl shadow-robin-950 rounded-2xl max-w-[1000px]  h-[500px]  bg-center justify-center align-center w-full m-auto`}
       style={{backgroundImage:`url(${affich.thumbail})`,backgroundSize:'cover',backgroundRepeat:'no-repeat'}}>
         <div className="text-white-100 italic  font-bold text-8xl text-center">{affich.Tittle.split(' ')[0]}</div>
@@ -65,7 +66,7 @@ useEffect(()=>{
             <button className="p-4 bg-white-50 text-bittersweet-400 font-bold text-2xl m-2 flex  " onClick={Goto}><img src="/play.png" className="w-[30px] h-[30px]" /> lecture</button>
             <button className="p-4 text-bittersweet-400 bg-white-50 font-bold text-2xl m-2 flex" onClick={()=>AddToList(affich._id)} ><img src={list ? "/check.png":"add.png"} className="w-[30px] h-[30px]" />{list ? "List" :"Add to list" }</button>
         </div>
-      </div>
+      </div>}
     
     {
       show == "" ? 
