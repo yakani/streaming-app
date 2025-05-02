@@ -175,12 +175,12 @@ const Comments = async(data)=>{
   
               </div>
             ))
-            :lastcomment ?  <div className="flex justify-between p-1">
-              <img src={lastcomment.user_id.avatar || "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px]"/>
-             <p className="text-white-50 text-xl">{lastcomment.comment}</p>
-            </div>:<div className="flex justify-between p-1">
-              <img src={ "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px]"/>
-             <p className="text-white-50 text-xl">no comment yet...</p>
+            :lastcomment ?  <div className="flex justify-center  p-1">
+              <img src={lastcomment.user_id.avatar || "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px] m-2"/>
+             <p className="text-white-50 text-center text-xl m-2">{lastcomment.comment}</p>
+            </div>:<div className="flex justify-center p-1 m-2">
+              <img src={ "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px] m-2"/>
+             <p className="text-white-50 text-center text-xl m-2">no comment yet...</p>
             </div>
             }
             
