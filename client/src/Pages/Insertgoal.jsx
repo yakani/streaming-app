@@ -53,7 +53,7 @@ formlast.append('Description',description);
    if(!file.type.includes('video') && !file.type.includes('image')){
         toast.error('wrong format for   video');
         return;
-    }else if(file.size > 2147483648){
+    }else if(file.size >104857600){
         toast.error('video too large');
         return;
     }
