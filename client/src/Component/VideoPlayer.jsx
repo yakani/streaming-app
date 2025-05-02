@@ -13,7 +13,7 @@ if(time >0 && playref.current){
           url={url} // Replace with your video URL
           controls={true}
           width="100%"
-         height="100%"
+         height="40%"
          config={{
   file: {
     tracks: [

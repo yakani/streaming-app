@@ -23,10 +23,7 @@ const SearchPage = () => {
 
   return (
     <div className="flex flex-col bg-robin-900 min-h[800px] w-full">
-      <div className="flex justify-between m-2">
-       
-        <img src="/download.png" alt="" className="h-[30px] w-[30px]  shadow-xl shadow-robin-950 cursor-pointer " onClick={()=>navigate('/download')}/>
-      </div>
+      
       <div className="flex w-full justify-center m-auto p-4  ">
        <input type="search" name="" id=""
         onClick={()=>setshow(false)}
