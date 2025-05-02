@@ -24,7 +24,7 @@ const Playerpage = ({isfilm ,}) => {
   const [goal,setgoal] = useState(selecte);
   const [viewall,setviewall] = useState(false);
   const [messages,setmessages] = useState(message);
-  const [lastcomment,setlastcomment] = useState(message[message.length-1]);
+  const [lastcomment,setlastcomment] = useState( message[message.length-1] || {});
   const [clickcomment,setclickcomment] = useState(false);
   const [text,setText] = useState("");
   const navigate = useNavigate();
@@ -164,7 +164,7 @@ const Comments = async(data)=>{
                 <X size={22} className="text-bittersweet-400" onClick={()=>setclickcomment(true)}/>
                </button>
             </div></> :
-            viewall  && messages.length >1?
+            viewall  && messages.length > 1?
           
            messages.map((item,index)=>(
               <div key={index} className="flex flex-col p-2 m-1 bg-robin-900 rounded-xl shadow-lg shadow-robin-950">
@@ -175,9 +175,12 @@ const Comments = async(data)=>{
   
               </div>
             ))
-            : <div className="flex justify-between p-1">
+            :lastcomment ?  <div className="flex justify-between p-1">
               <img src={lastcomment.user_id.avatar || "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px]"/>
              <p className="text-white-50 text-xl">{lastcomment.comment}</p>
+            </div>:<div className="flex justify-between p-1">
+              <img src={ "/avatar.png"} alt=""  className="rounded-full w-[30px] h-[30px]"/>
+             <p className="text-white-50 text-xl">no comment yet...</p>
             </div>
             }
             
