@@ -67,13 +67,13 @@ const RegisterPage = () => {
          <input type="tel"  name="tel" placeholder=" +39 0258 225 255 "
          value={Tel}
          onChange={(e)=>setTel(e.target.value)}
-         className="p-2 h-[50px] m-1 shadow-xl shadow-robin-950 "  /></div>
+         className="p-3 text-center rounded-lg m-1 text-bettersweet-400 "  /></div>
        
         <div className="m-2 flex flex-col ">  
         <button className="bg-bittersweet-400 hover:bg-bittersweet-900 cursor-pionter shadow-xl shadow-robin-950 m-2 text-white-50 text-xl p-2   "
         type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
-        <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900">
+        <a href={`${import.meta.env.VITE_Api}/auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900">
         <img src="/google.png" className="w-[40px] h-[40px] text-bittersweet-50  m-1" />
           <p className="text-white-50 text-xl p-2 text-center rounded-xl w-full "
       > signUp  </p></a>

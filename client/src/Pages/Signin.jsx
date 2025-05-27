@@ -39,11 +39,12 @@ navigate('/view');
          <input type="email"  name="email" placeholder="Enter your e-mail  " 
          value={Email}
          onChange={(e)=>setEmail(e.target.value)} 
-         className="flex-1 text-center p-1 text-white-50"  /></div>
+         className="p-3 text-center rounded-lg m-1 text-bettersweet-400"  />
+         </div>
         <button className="bg-bittersweet-400 shadow-xl shadow-robin-950  text-white-50 text-xl p-2 m-1   hover:bg-bittersweet-900"
          type="submit"> {islogining ? <Spinner loading={islogining} size={20}/>
         : "envia"} </button>
-        <a href={`${import.meta.env.VITE_Api}auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900 ">
+        <a href={`${import.meta.env.VITE_Api}/auth/google`} className="flex bg-bittersweet-400 shadow-xl shadow-robin-950  justify-center m-2 p-2 hover:bg-bittersweet-900 ">
         <img src="/google.png" className="w-[40px] h-[40px] text-bittersweet-50  m-1" />
         <p className=" text-white-50 text-xl p-2 rounded-xl  "
          > signin </p></a>
